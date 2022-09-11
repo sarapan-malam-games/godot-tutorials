@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm6j63ni33rhm"]
+
+[ext_resource type="PackedScene" path="res://ground/ground_normal.tscn" id="1_40qyn"]
+[ext_resource type="Texture2D" uid="uid://ginnks76kxs0" path="res://textures/GroundNormal.png" id="2_lxw5o"]
+
+[node name="GroundSlow" instance=ExtResource("1_40qyn")]
+
+[node name="Sprite2d" parent="." index="1"]
+texture = ExtResource("2_lxw5o")

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://jrc3vh0aiss1"]
+
+[ext_resource type="Texture2D" uid="uid://trp3803igowg" path="res://textures/GroundSlow.png" id="1_sovgl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h2kp2"]
+size = Vector2(552, 143)
+
+[node name="GroundNormal" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_h2kp2")
+
+[node name="Sprite2d" type="Sprite2D" parent="."]
+texture = ExtResource("1_sovgl")
