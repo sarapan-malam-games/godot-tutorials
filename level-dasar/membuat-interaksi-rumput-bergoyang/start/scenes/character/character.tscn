@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfhgpg7vnudma"]
+
+[ext_resource type="Script" path="res://scenes/character/character.gd" id="1_s1npn"]
+
+[node name="Character" type="CharacterBody2D"]
+collision_layer = 0
+collision_mask = 0
+script = ExtResource("1_s1npn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Pivot" type="Marker2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+
+[node name="Scale" type="Marker2D" parent="Pivot"]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(-2, -89)
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]

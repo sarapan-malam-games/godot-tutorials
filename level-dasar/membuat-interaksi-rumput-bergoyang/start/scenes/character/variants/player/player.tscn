@@ -1,0 +1,193 @@
+[gd_scene load_steps=11 format=3 uid="uid://bedracx3oqgx5"]
+
+[ext_resource type="PackedScene" uid="uid://bfhgpg7vnudma" path="res://scenes/character/character.tscn" id="1_c3acs"]
+[ext_resource type="Texture2D" uid="uid://cwu8kgh2booqf" path="res://assets/textures/Idle.png" id="2_yvxbr"]
+[ext_resource type="Texture2D" uid="uid://c3p0fe13gsq0c" path="res://assets/textures/Jump.png" id="3_ljftr"]
+
+[sub_resource type="Animation" id="Animation_8iu18"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Scale/AnimatedSprite2d:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Scale/AnimatedSprite2d:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 178)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Scale/AnimatedSprite2d:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_ppjx6"]
+resource_name = "idle"
+length = 0.333333
+loop_mode = 1
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Scale/AnimatedSprite2d:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.333333),
+"transitions": PackedFloat32Array(-0.5, -0.5, -0.5, -0.5),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.01587, 0.929179), Vector2(0.950797, 1.00727), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Scale/AnimatedSprite2d:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 178)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Scale/AnimatedSprite2d:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"idle"]
+}
+
+[sub_resource type="Animation" id="Animation_07wwt"]
+resource_name = "jump"
+length = 0.2
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Scale/AnimatedSprite2d:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector2(0.931577, 1.1588), Vector2(1, 0.962287)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Pivot/Scale/AnimatedSprite2d:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 178)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Pivot/Scale/AnimatedSprite2d:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"jump"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cqvf5"]
+_data = {
+"RESET": SubResource("Animation_8iu18"),
+"idle": SubResource("Animation_ppjx6"),
+"jump": SubResource("Animation_07wwt")
+}
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lhxf7"]
+animations = [{
+"frames": [ExtResource("2_yvxbr")],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [ExtResource("3_ljftr")],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0q1fd"]
+radius = 48.0
+height = 204.0
+
+[sub_resource type="Gradient" id="Gradient_bwb7t"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="Player" instance=ExtResource("1_c3acs")]
+collision_layer = 1
+collision_mask = 16
+
+[node name="AnimationPlayer" parent="." index="0"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_cqvf5")
+}
+
+[node name="AnimatedSprite2d" type="AnimatedSprite2D" parent="Pivot/Scale" index="0"]
+position = Vector2(4, 178)
+frames = SubResource("SpriteFrames_lhxf7")
+animation = &"idle"
+offset = Vector2(22, -204)
+
+[node name="CollisionShape2d" parent="." index="2"]
+visible = false
+position = Vector2(0, -104)
+shape = SubResource("CapsuleShape2D_0q1fd")
+
+[node name="CpuParticles2d" type="CPUParticles2D" parent="." index="3"]
+position = Vector2(0, 1)
+emitting = false
+amount = 6
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.39
+randomness = 0.21
+direction = Vector2(0, -1)
+gravity = Vector2(0, 100)
+initial_velocity_max = 130.0
+angular_velocity_max = 158.64
+damping_min = 38.98
+damping_max = 69.49
+scale_amount_min = 10.0
+scale_amount_max = 30.0
+color_ramp = SubResource("Gradient_bwb7t")

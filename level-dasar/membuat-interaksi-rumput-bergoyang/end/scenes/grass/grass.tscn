@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://ci73mkv07y0yn"]
+
+[ext_resource type="Texture2D" uid="uid://bwhww8j2cbpbq" path="res://assets/textures/grass.png" id="1_1v6nw"]
+[ext_resource type="Script" path="res://scenes/grass/grass.gd" id="1_2pkxa"]
+[ext_resource type="Shader" path="res://shaders/WindSway.gdshader" id="2_30hu2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xy0xs"]
+resource_local_to_scene = true
+shader = ExtResource("2_30hu2")
+shader_parameter/detail = 1.0
+shader_parameter/heightOffset = null
+shader_parameter/interval = 3.5
+shader_parameter/maxStrength = 0.045
+shader_parameter/minStrength = 0.05
+shader_parameter/offset = 0.0
+shader_parameter/skew = 0.0
+shader_parameter/speed = 2.0
+shader_parameter/strengthScale = 100.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u4v0d"]
+radius = 21.2132
+
+[node name="Grass" type="Area2D"]
+script = ExtResource("1_2pkxa")
+
+[node name="Pivot" type="Marker2D" parent="."]
+
+[node name="Sprite2d" type="Sprite2D" parent="Pivot"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_xy0xs")
+position = Vector2(0, -31)
+texture = ExtResource("1_1v6nw")
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2d" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_u4v0d")
